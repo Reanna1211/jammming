@@ -1,0 +1,16 @@
+.search-results {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Adjust to your desired width */
+    margin-top: 20px;
+  }
+  
+  .results-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack tracks vertically */
+    gap: 10px; /* Space between each track */
+  }
+  

@@ -18,6 +18,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
+  width:100%;
   text-align: center;
 }
 
@@ -62,14 +63,111 @@ h1 {
 }
 
 /* Style the Results and Playlist containers */
-.search-results, .playlist {
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+
+/*.search-results {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}*/
+
+.results-list {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* .search-results, .playlist {
+  background-color: rgba(0, 0, 0, 0.7); 
   border-radius: 10px;
   padding: 20px;
   width: 80%;
   max-width: 600px;
   margin-top: 20px;
+} */
+
+/*added*/
+
+/* Style the Results container */
+.search-results {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px; /* Adjust to your desired width */
+  margin-top: 20px;
 }
+
+.track-table {
+  width: 100%;  /* Full width */
+  border-collapse: collapse;  /* Collapse borders for a clean look */
+  margin-top: 20px;
+}
+
+.track-table th,
+.track-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd; /* Light border for table rows and cells */
+}
+
+.track-table th {
+  background-color: #6a0dad; /* Purple header */
+  color: white;
+  font-size: 1.2rem;
+}
+
+.track-table td {
+  background-color: rgba(0, 0, 0, 0.6); /* Darker background for tracks */
+  color: white;
+  font-size: 1rem;
+}
+
+.track-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.5); /* Alternate row colors */
+}
+
+.track-table tr:hover {
+  background-color: #8a2be2; /* Hover effect for rows */
+}
+/*added*/
+
+.track {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  color: white;
+  /*added*/
+  display: flex;  /* Use flexbox to align items horizontally */
+  justify-content: space-between; /* Space out the content */
+  align-items: center; /* Vertically center the content */
+  /*added*/
+}
+
+.track h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.track p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+/* Optionally adjust the font size or spacing between elements */
+.track .track-name {
+  font-weight: bold;
+}
+
+.track .track-artist,
+.track .track-album {
+  font-style: italic;
+}
+
 
 button {
   padding: 10px 20px;

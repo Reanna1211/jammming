@@ -1,0 +1,56 @@
+/* .track {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .track h3 {
+    font-size: 1.5rem;
+  }
+  
+  .track p {
+    font-size: 1rem;
+  }
+  */
+
+  .track {
+    display: grid; /* Use flexbox to align items horizontally */
+    /* justify-content: space-between;  Space out the content between name, artist, and album */
+    grid-template-columns: 1fr 1fr 1fr; /* Create 3 equal-width columns */
+    /* align-items: center;  Center the items vertically */
+    gap: 10px; /* Space between columns */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+    width: 100%; /* Ensure the track takes the full width */
+  }
+  
+  .track-name, .track-artist, .track-album {
+    font-size: 1rem;
+    margin: 0; /* Remove default margin */
+    white-space: nowrap; /* Prevent text from breaking into multiple lines */
+  }
+  
+  /* Optional: Add some space between track columns */
+  .track-name {
+    flex: 2; /* Allow name to take more space */
+    min-width: 200px; /* Prevent name from shrinking too much */
+    text-align: left;
+  }
+  
+  .track-artist {
+    flex: 1; /* Artist column takes less space */
+    min-width: 150px; /* Prevent artist column from shrinking too much */
+    text-align: center;
+  }
+  
+  .track-album {
+    flex: 1; /* Album column takes less space */
+    min-width: 150px; /* Prevent album column from shrinking too much */
+    text-align: right; /* Align album to the right */
+  }
+  

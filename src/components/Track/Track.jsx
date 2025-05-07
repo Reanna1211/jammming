@@ -1,12 +1,12 @@
 import React from 'react';
 import './Track.module.css';
 
-function Track() {
+function Track({ name, artist, album }) {
   return (
     <div className="track">
-      <h4>Track Title</h4>
-      <p>Artist</p>
-      {/* Later, add functionality to add/remove from playlist */}
+      <div className="track-name">{name}</div> {/* Track name */}
+      <div className="track-artist">{artist}</div> {/* Track artist */}
+      <div className="track-album">{album}</div> {/* Track album */}
     </div>
   );
 }
