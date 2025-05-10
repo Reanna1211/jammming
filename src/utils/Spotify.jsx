@@ -35,6 +35,36 @@ let codeVerifier = generateRandomString(64); // Generate a new code verifier
 localStorage.setItem('code_verifier', codeVerifier);
 
 const Spotify = {
+
+
+//   // ADDED TO CHECK OBTAIN ACCESS TOKEN WORKS! -ALSO CHECK SEARCHBAR COMPONENT!
+//    // This function handles searching for tracks using the access token
+//    async searchTracks(term) {
+//     const token = await this.getAccessToken(); // Get the access token
+
+//     if (!token) {
+//       console.error('No valid token found');
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       });
+
+//       const data = await response.json();
+//       console.log('Spotify Search Results:', data);
+      
+//       // You can return or process the data here as needed
+//       return data;
+//     } catch (error) {
+//       console.error('Error searching tracks:', error);
+//     }
+//   },
+// //ALL THE WAY TILL HERE
+
   // This function handles getting the access token
   async getAccessToken() {
     if (accessToken) {
