@@ -1,14 +1,15 @@
-const clientId = '3da982fbf32641eeacf616e09858b8dd'; // Insert client ID here.
-const redirectUri = 'http://127.0.0.1:3000/callback'; // Match this with your Spotify App redirect URI
 
-// Generate a random string for code verifier
+const clientId = '7559df79d97445a6ac449b381c7f8708'; // Insert your client ID
+const redirectUri = 'http://127.0.0.1:8888/callback'; // Match this with your Spotify App redirect URI
+
+// Generate a random string for the code verifier (PKCE)
 const generateRandomString = (length) => {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const values = crypto.getRandomValues(new Uint8Array(length));
   return values.reduce((acc, x) => acc + possible[x % possible.length], "");
 }
 
-// Generate the code challenge using SHA256
+// Generate the code challenge using SHA256 (PKCE)
 const sha256 = async (plain) => {
   const encoder = new TextEncoder();
   const data = encoder.encode(plain);
@@ -30,10 +31,11 @@ const generateCodeChallenge = async (codeVerifier) => {
 let accessToken;
 let codeVerifier = generateRandomString(64); // Generate a new code verifier
 
-// Store code verifier in localStorage
+// Store the code verifier in localStorage (we need it for the token request)
 localStorage.setItem('code_verifier', codeVerifier);
 
 const Spotify = {
+  // This function handles getting the access token
   async getAccessToken() {
     if (accessToken) {
       return accessToken;
@@ -45,11 +47,14 @@ const Spotify = {
       accessToken = accessTokenMatch[1];
       const expiresIn = Number(expiresInMatch[1]);
 
+      // Set a timeout to clear the access token after it expires
       window.setTimeout(() => accessToken = '', expiresIn * 1000);
 
+      // Clean up URL by removing access token params
       window.history.pushState('Access Token', null, '/');
       return accessToken;
     } else {
+      // If no token, start the PKCE flow and redirect to Spotify for authorization
       const codeChallenge = await generateCodeChallenge(codeVerifier); // Generate code challenge
 
       const authUrl = new URL("https://accounts.spotify.com/authorize");
@@ -67,13 +72,10 @@ const Spotify = {
     }
   },
 
+  // This function exchanges the authorization code for an access token
   async exchangeCodeForToken(code) {
-    const codeVerifier = localStorage.getItem('code_verifier'); // Retrieve code verifier
-    const tokenUrl = 'https://accounts.spotify.com/api/token';
-    const headers = {
-      'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    };
+    const codeVerifier = localStorage.getItem('code_verifier'); // Retrieve the code verifier
+    const tokenUrl = 'http://127.0.0.1:5000/api/token'; // Point to your backend here
 
     const body = new URLSearchParams({
       code: code,
@@ -84,7 +86,6 @@ const Spotify = {
 
     const response = await fetch(tokenUrl, {
       method: 'POST',
-      headers: headers,
       body: body
     });
 
@@ -98,6 +99,7 @@ const Spotify = {
     }
   },
 
+  // Search for tracks using the access token
   async search(term) {
     const token = await Spotify.getAccessToken();
     const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
@@ -119,6 +121,7 @@ const Spotify = {
     }));
   },
 
+  // Save the playlist to the user's Spotify account
   async savePlaylist(name, trackUris) {
     const token = await Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${token}` };
@@ -146,3 +149,8 @@ const Spotify = {
 };
 
 export default Spotify;
+
+
+
+
+
