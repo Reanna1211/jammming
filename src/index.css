@@ -64,12 +64,7 @@ h1 {
 
 /* Style the Results and Playlist containers */
 
-/*.search-results {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-}*/
+
 
 .results-list {
   margin-top: 20px;
@@ -141,11 +136,10 @@ h2 {
   padding: 10px;
   margin: 10px 0;
   color: white;
-  /*added*/
-  display: flex;  /* Use flexbox to align items horizontally */
-  justify-content: space-between; /* Space out the content */
-  align-items: center; /* Vertically center the content */
-  /*added*/
+  display: grid; /* Use flexbox to align items horizontally */
+  grid-template-columns: 1fr 1fr 1fr; /* Create 3 equal-width columns */
+  gap: 10px; /* Space between columns */
+
 }
 
 .track h3 {
@@ -181,5 +175,32 @@ button {
 
 button:hover {
   background-color: #8a2be2;
+}
+
+
+.track-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+}
+
+.track {
+  flex-grow: 1; /* Allow the track to take up available space */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+
+.remove-button {
+  margin-left: 10px;
+  background-color: #d9534f; /* Red button */
+  transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+  background-color: #c9302c; /* Darker red on hover */
 }
 
